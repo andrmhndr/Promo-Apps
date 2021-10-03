@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Promo Apps</string>
+    <string name="userlogin">Login as User with Google</string>
+    <string name="adminlogin">Login as Admin</string>
+    <string name="loggedInAdmin">Logged in as Admin</string>
+    <string name="loggedInUser">Logged in as User</string>
+    <string name="name">Name</string>
+    <string name="Email">Email</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="logout">Logout</string>
+    <string name="Password">Password</string>
+    <string name="login_admin">Login Admin</string>
+    <string name="login">Login</string>
+    <string name="loginadminfail">Login Failed : Email or Password doesn\'t match</string>
+    <string name="emailempty">Email can\'t be empty !</string>
+    <string name="passwordempty">Password can\'t be empty !</string>
+    <string name="admin">Admin</string>
+    <string name="addpromo">Create Promo</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="promo">Promo</string>
+    <string name="promoapps">Promo Apps</string>
+</resources>
