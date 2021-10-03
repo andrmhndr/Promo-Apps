@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import androidmads.library.qrgenearator.QRGEncoder
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.promoapps.R
 import com.example.promoapps.activity.DetailPromoActivity
 import com.example.promoapps.activity.LoginActivity
@@ -24,12 +24,14 @@ import kotlinx.coroutines.*
 
 class UserActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
+    private lateinit var promosListAdapter: ListItemAdapter
 
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var txtEmail: TextView
     private lateinit var txtName: TextView
     private lateinit var rvListPromo: RecyclerView
+    private lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,15 +43,28 @@ class UserActivity : AppCompatActivity() {
         txtEmail = findViewById(R.id.txt_email)
         txtName = findViewById(R.id.txt_name)
         rvListPromo = findViewById(R.id.rv_promo_user)
+        swipeRefresh = findViewById(R.id.swipeRefresh)
+
+        showList()
+
+        swipeRefresh.setOnRefreshListener {
+            GlobalScope.launch(Dispatchers.IO){
+                userViewModel.getPromosData()
+                withContext(Dispatchers.Main){
+                    promosListAdapter.notifyDataSetChanged()
+                    swipeRefresh.isRefreshing = false
+                }
+            }
+        }
     }
 
     private fun showList(){
         rvListPromo.setHasFixedSize(true)
         rvListPromo.layoutManager = LinearLayoutManager(this)
-        val promoListAdapter =  ListItemAdapter(userViewModel.promoList, Helper.USER)
-        rvListPromo.adapter = promoListAdapter
+        promosListAdapter =  ListItemAdapter(userViewModel.promoList, Helper.USER)
+        rvListPromo.adapter = promosListAdapter
 
-        promoListAdapter.setOnItemClickCallback(object : ListItemAdapter.OnItemClickCallback{
+        promosListAdapter.setOnItemClickCallback(object : ListItemAdapter.OnItemClickCallback{
             override fun onItemClicked(data: PromoModel) {
                 val goDetail = Intent(this@UserActivity, DetailPromoActivity::class.java)
                 goDetail.putExtra(Helper.PROMOID, data.id)
@@ -87,7 +102,7 @@ class UserActivity : AppCompatActivity() {
             withContext(Dispatchers.Main){
                 txtEmail.text = userViewModel.userModel.email
                 txtName.text = userViewModel.userModel.name
-                showList()
+                promosListAdapter.notifyDataSetChanged()
             }
         }
     }

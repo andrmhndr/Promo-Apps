@@ -20,22 +20,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name"
-            android:theme="@style/nameStyle"/>
+            android:theme="@style/nameStyle" />
 
         <TextView
-            android:layout_below="@id/txt_name"
+            android:id="@+id/txt_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_email"
+            android:layout_below="@id/txt_name"
             android:text="@string/Email"
-            android:theme="@style/emailStyle"/>
+            android:theme="@style/emailStyle" />
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_promo_user"
-        tools:listitem="@layout/item_list_promo"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_promo_user"
+            tools:listitem="@layout/item_list_promo"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>
