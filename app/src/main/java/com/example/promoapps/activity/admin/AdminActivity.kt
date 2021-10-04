@@ -113,6 +113,13 @@ class AdminActivity : AppCompatActivity() {
                 mAuth.signOut()
                 true
             }
+            R.id.btn_history -> {
+                val goHistory = Intent(this@AdminActivity, HistoryActivity::class.java)
+                goHistory.putExtra(Helper.ACCOUNTS, Helper.ADMIN)
+                startActivity(goHistory)
+                finish()
+                true
+            }
             else -> true
         }
     }
