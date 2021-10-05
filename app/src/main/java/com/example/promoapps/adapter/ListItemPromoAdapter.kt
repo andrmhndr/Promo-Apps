@@ -47,7 +47,7 @@ class ListItemPromoAdapter(private val listItem: ArrayList<PromoModel>, private 
 
         holder.txtTitle.text = item.title
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-        holder.txtDate.text = dateFormat.format(item.date)
+        holder.txtDate.text = dateFormat.format(item.timestamp)
         holder.txtDescription.text = item.description
         if (role == Helper.USER){
             holder.btnDelete.visibility = View.INVISIBLE

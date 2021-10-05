@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,61 +12,100 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:padding="20dp"
+        android:background="@drawable/shape_header"
         android:gravity="center_horizontal"
-        android:background="@drawable/shape_header">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/addpromo"
-            android:theme="@style/nameStyle"/>
+            android:theme="@style/nameStyle" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_below="@id/header"
-        android:layout_above="@id/footer"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
         android:padding="25dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="@string/title"
             android:textStyle="italic|bold"
-            android:theme="@style/titleStyle"/>
+            android:theme="@style/titleStyle" />
 
         <EditText
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title"
-            android:id="@+id/et_title"
             android:layout_marginHorizontal="20dp"
-            android:inputType="text"/>
+            android:layout_marginBottom="10dp"
+            android:hint="@string/title"
+            android:inputType="text" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="@string/description"
-            android:textSize="25sp"
             android:textColor="@color/design_default_color_on_secondary"
-            android:textStyle="bold|italic"/>
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
 
         <EditText
             android:id="@+id/et_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="top|left"
             android:hint="@string/description"
             android:inputType="textMultiLine"
             android:lines="8"
             android:maxLines="10"
             android:minLines="6"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/limit"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="25sp"
+                android:textStyle="bold|italic" />
+
+            <Switch
+                android:id="@+id/switch_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_limit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/limit"
+            android:inputType="number"
+            android:singleLine="true"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

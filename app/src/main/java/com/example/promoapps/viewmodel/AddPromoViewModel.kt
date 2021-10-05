@@ -6,22 +6,22 @@ import androidx.lifecycle.ViewModel
 import com.example.promoapps.adapter.Helper
 import com.example.promoapps.model.PromoModel
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class AddPromoViewModel: ViewModel() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     lateinit var promoModel: PromoModel
 
-    fun setPromo(id: String?, title: String?, date: Date?, description: String?){
-        promoModel = PromoModel(id, title, date, description)
+    fun setPromo(title: String?, description: String?, limit: Int?){
+        promoModel = PromoModel(null, title, Calendar.getInstance().time, description, limit)
     }
 
     fun addPromo(context: Context){
         val promo = hashMapOf(
-            "title" to promoModel.title,
-            "description" to promoModel.description,
-            "timestamp" to Calendar.getInstance().time
+            Helper.TITLE to promoModel.title,
+            Helper.TIMESTAMP to promoModel.timestamp,
+            Helper.DESCRIPTION to promoModel.description,
+            Helper.LIMIT to promoModel.limit
         )
         db.collection(Helper.PROMOS).add(promo).addOnSuccessListener { document->
             Toast.makeText(context, "Promo Successfully added with id : ${document.id}", Toast.LENGTH_SHORT).show()

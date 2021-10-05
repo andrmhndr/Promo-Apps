@@ -26,7 +26,7 @@ class PopupActivity : Activity() {
         imgQR = findViewById(R.id.img_qr_code)
 
         promoid = intent.getStringExtra(Helper.PROMOID).toString()
-        userid = intent.getStringExtra(Helper.USER).toString()
+        userid = intent.getStringExtra(Helper.ID).toString()
 
         val data = "$promoid*$userid"
         val qrGEncoder = QRGEncoder(data, null, QRGContents.Type.TEXT, 1000)

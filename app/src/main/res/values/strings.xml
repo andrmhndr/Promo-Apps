@@ -25,4 +25,5 @@
     <string name="history">History</string>
     <string name="detail">Detail</string>
     <string name="user">User</string>
+    <string name="limit">Limit</string>
 </resources>

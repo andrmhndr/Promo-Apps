@@ -6,8 +6,15 @@ class Helper {
         const val ACCOUNTS = "accounts"
         const val USER = "user"
         const val ADMIN = "admin"
+        const val ID = "id"
         const val RC_SIGN_IN = 101
 
+        const val HISTORY = "history"
+
         const val PROMOID = "promo_id"
+        const val TITLE = "title"
+        const val DESCRIPTION = "description"
+        const val TIMESTAMP = "timestamp"
+        const val LIMIT = "limit"
     }
 }

@@ -17,12 +17,12 @@
         android:id="@+id/txt_title"/>
 
     <TextView
-        android:layout_below="@id/txt_title"
+        android:id="@+id/txt_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/txt_title"
         android:text="@string/date"
-        android:theme="@style/dateStyle"
-        android:id="@+id/txt_date"/>
+        android:theme="@style/dateStyle" />
 
     <TextView
         android:layout_below="@id/txt_date"
