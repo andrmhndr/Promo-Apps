@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PromoApps">
-        <activity android:name=".activity.PopupActivity"
+        <activity android:name=".activity.user.PopupActivity"
             android:theme="@style/popup"/>
         <activity
             android:name=".activity.HistoryActivity"

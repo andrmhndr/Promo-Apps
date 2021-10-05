@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.promoapps.R
+import com.example.promoapps.activity.user.PopupActivity
 import com.example.promoapps.adapter.Helper
 import com.example.promoapps.viewmodel.DetailPromoViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton

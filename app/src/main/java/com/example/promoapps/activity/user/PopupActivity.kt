@@ -1,4 +1,4 @@
-package com.example.promoapps.activity
+package com.example.promoapps.activity.user
 
 import android.app.Activity
 import android.os.Bundle
