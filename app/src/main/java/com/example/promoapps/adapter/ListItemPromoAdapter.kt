@@ -10,7 +10,7 @@ import com.example.promoapps.R
 import com.example.promoapps.model.PromoModel
 import java.text.SimpleDateFormat
 
-class ListItemAdapter(private val listItem: ArrayList<PromoModel>, private val role: String): RecyclerView.Adapter<ListItemAdapter.ListItemHolder>() {
+class ListItemPromoAdapter(private val listItem: ArrayList<PromoModel>, private val role: String): RecyclerView.Adapter<ListItemPromoAdapter.ListItemHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     private lateinit var onDeleteClickCallback: OnDeleteClickCallback
 

@@ -74,8 +74,8 @@
             android:id="@+id/btn_showqr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_qr_code_24"
-            android:backgroundTint="@color/design_default_color_secondary"/>
+            android:backgroundTint="@color/design_default_color_secondary"
+            android:src="@drawable/ic_baseline_qr_code_24" />
 
     </LinearLayout>
 

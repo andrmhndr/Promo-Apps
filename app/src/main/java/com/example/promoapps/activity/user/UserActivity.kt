@@ -14,7 +14,7 @@ import com.example.promoapps.R
 import com.example.promoapps.activity.DetailPromoActivity
 import com.example.promoapps.activity.LoginActivity
 import com.example.promoapps.adapter.Helper
-import com.example.promoapps.adapter.ListItemAdapter
+import com.example.promoapps.adapter.ListItemPromoAdapter
 import com.example.promoapps.model.PromoModel
 import com.example.promoapps.viewmodel.user.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +24,7 @@ import kotlinx.coroutines.*
 
 class UserActivity : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
-    private lateinit var promosListAdapter: ListItemAdapter
+    private lateinit var promosListPromoAdapter: ListItemPromoAdapter
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -51,7 +51,7 @@ class UserActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO){
                 userViewModel.getPromosData()
                 withContext(Dispatchers.Main){
-                    promosListAdapter.notifyDataSetChanged()
+                    promosListPromoAdapter.notifyDataSetChanged()
                     swipeRefresh.isRefreshing = false
                 }
             }
@@ -61,10 +61,10 @@ class UserActivity : AppCompatActivity() {
     private fun showList(){
         rvListPromo.setHasFixedSize(true)
         rvListPromo.layoutManager = LinearLayoutManager(this)
-        promosListAdapter =  ListItemAdapter(userViewModel.promoList, Helper.USER)
-        rvListPromo.adapter = promosListAdapter
+        promosListPromoAdapter =  ListItemPromoAdapter(userViewModel.promoList, Helper.USER)
+        rvListPromo.adapter = promosListPromoAdapter
 
-        promosListAdapter.setOnItemClickCallback(object : ListItemAdapter.OnItemClickCallback{
+        promosListPromoAdapter.setOnItemClickCallback(object : ListItemPromoAdapter.OnItemClickCallback{
             override fun onItemClicked(data: PromoModel) {
                 val goDetail = Intent(this@UserActivity, DetailPromoActivity::class.java)
                 goDetail.putExtra(Helper.PROMOID, data.id)
@@ -102,7 +102,7 @@ class UserActivity : AppCompatActivity() {
             withContext(Dispatchers.Main){
                 txtEmail.text = userViewModel.userModel.email
                 txtName.text = userViewModel.userModel.name
-                promosListAdapter.notifyDataSetChanged()
+                promosListPromoAdapter.notifyDataSetChanged()
             }
         }
     }

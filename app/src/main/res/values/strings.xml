@@ -23,4 +23,6 @@
     <string name="promo">Promo</string>
     <string name="promoapps">Promo Apps</string>
     <string name="history">History</string>
+    <string name="detail">Detail</string>
+    <string name="user">User</string>
 </resources>
