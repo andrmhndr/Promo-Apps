@@ -27,7 +27,7 @@ import kotlinx.coroutines.*
 
 class AdminActivity : AppCompatActivity() {
     private lateinit var adminViewModel: AdminViewModel
-    private lateinit var promosListPromoAdapter: ListItemPromoAdapter
+    private lateinit var listPromoAdapter: ListItemPromoAdapter
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -58,7 +58,7 @@ class AdminActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO){
                 adminViewModel.getPromosData()
                 withContext(Dispatchers.Main){
-                    promosListPromoAdapter.notifyDataSetChanged()
+                    listPromoAdapter.notifyDataSetChanged()
                     swipeRefresh.isRefreshing = false
                 }
             }
@@ -86,25 +86,25 @@ class AdminActivity : AppCompatActivity() {
     private fun showList(){
         rvListPromo.setHasFixedSize(true)
         rvListPromo.layoutManager = LinearLayoutManager(this)
-        promosListPromoAdapter = ListItemPromoAdapter(adminViewModel.promoList, Helper.ADMIN)
-        rvListPromo.adapter = promosListPromoAdapter
+        listPromoAdapter = ListItemPromoAdapter(adminViewModel.promoList, Helper.ADMIN)
+        rvListPromo.adapter = listPromoAdapter
 
-        promosListPromoAdapter.setOnItemClickCallback(object : ListItemPromoAdapter.OnItemClickCallback{
+        listPromoAdapter.setOnItemClickCallback(object : ListItemPromoAdapter.OnItemClickCallback{
             override fun onItemClicked(data: PromoModel) {
                 val goDetailPromo = Intent(this@AdminActivity, DetailPromoActivity::class.java)
                 goDetailPromo.putExtra(Helper.PROMOID, data.id)
-                goDetailPromo.putExtra(Helper.ACCOUNTS, Helper.ADMIN)
+                goDetailPromo.putExtra(Helper.ROLE, Helper.ADMIN)
                 startActivity(goDetailPromo)
             }
         })
 
-        promosListPromoAdapter.setDeleteClickCallback(object : ListItemPromoAdapter.OnDeleteClickCallback{
+        listPromoAdapter.setDeleteClickCallback(object : ListItemPromoAdapter.OnDeleteClickCallback{
             override fun onDeleteClicked(data: PromoModel) {
                 GlobalScope.launch(Dispatchers.IO){
                     adminViewModel.deletePromo(data.id.toString())
                     adminViewModel.getPromosData()
                     withContext(Dispatchers.Main){
-                        promosListPromoAdapter.notifyDataSetChanged()
+                        listPromoAdapter.notifyDataSetChanged()
                     }
                 }
             }
@@ -123,7 +123,7 @@ class AdminActivity : AppCompatActivity() {
             }
             R.id.btn_history -> {
                 val goHistory = Intent(this@AdminActivity, HistoryActivity::class.java)
-                goHistory.putExtra(Helper.ACCOUNTS, Helper.ADMIN)
+                goHistory.putExtra(Helper.ROLE, Helper.ADMIN)
                 startActivity(goHistory)
                 finish()
                 true
@@ -140,7 +140,7 @@ class AdminActivity : AppCompatActivity() {
             withContext(Dispatchers.Main){
                 txtEmail.text = adminViewModel.userModel.email
                 txtName.text = adminViewModel.userModel.name
-                promosListPromoAdapter.notifyDataSetChanged()
+                listPromoAdapter.notifyDataSetChanged()
             }
         }
     }

@@ -68,7 +68,7 @@ class UserActivity : AppCompatActivity() {
             override fun onItemClicked(data: PromoModel) {
                 val goDetail = Intent(this@UserActivity, DetailPromoActivity::class.java)
                 goDetail.putExtra(Helper.PROMOID, data.id)
-                goDetail.putExtra(Helper.ACCOUNTS, Helper.USER)
+                goDetail.putExtra(Helper.ROLE, Helper.USER)
                 startActivity(goDetail)
             }
         })

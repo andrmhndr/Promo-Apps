@@ -15,7 +15,7 @@ class AdminViewModel: ViewModel() {
 
     suspend fun getAdminData(currentUser: FirebaseUser?){
         if (currentUser != null) {
-            db.collection(Helper.ACCOUNTS).document(currentUser.uid).get().addOnSuccessListener { document->
+            db.collection(Helper.ROLE).document(currentUser.uid).get().addOnSuccessListener { document->
                 if (document != null){
                     userModel = UserModel(document.getString("name"),
                         document.getString("email"),

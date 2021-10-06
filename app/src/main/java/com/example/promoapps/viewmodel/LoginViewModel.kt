@@ -12,7 +12,7 @@ class LoginViewModel: ViewModel() {
 
     suspend fun check(currentUser: FirebaseUser) {
         if (currentUser != null) {
-            db.collection(Helper.ACCOUNTS).document(currentUser.uid).get().addOnSuccessListener { document->
+            db.collection(Helper.ROLE).document(currentUser.uid).get().addOnSuccessListener { document->
                 role = document?.getString("role")
             }.await()
         }
@@ -26,7 +26,7 @@ class LoginViewModel: ViewModel() {
                     "email" to currentUser.email,
                     "role" to Helper.USER
             )
-            db.collection(Helper.ACCOUNTS).document(currentUser.uid).set(user).await()
+            db.collection(Helper.ROLE).document(currentUser.uid).set(user).await()
         }
     }
 }

@@ -48,7 +48,7 @@ class DetailPromoActivity : AppCompatActivity() {
 
         detailPromoViewModel = ViewModelProvider(this).get(DetailPromoViewModel::class.java)
 
-        detailPromoViewModel.role = intent.getStringExtra(Helper.ACCOUNTS).toString()
+        detailPromoViewModel.role = intent.getStringExtra(Helper.ROLE).toString()
         if (detailPromoViewModel.role == Helper.ADMIN){
             btnShowQr.visibility = View.INVISIBLE
         }

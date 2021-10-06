@@ -3,7 +3,7 @@ package com.example.promoapps.adapter
 class Helper {
     companion object{
         const val PROMOS = "promos"
-        const val ACCOUNTS = "accounts"
+        const val ROLE = "accounts"
         const val USER = "user"
         const val ADMIN = "admin"
         const val ID = "id"

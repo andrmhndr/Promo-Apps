@@ -32,7 +32,7 @@
         android:theme="@style/descStyle" />
 
     <TextView
-        android:id="@+id/txt_admin"
+        android:id="@+id/txt_userid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/userid"
