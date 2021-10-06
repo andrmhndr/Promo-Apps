@@ -71,6 +71,7 @@ class DetailPromoActivity : AppCompatActivity() {
         btnShowQr.setOnClickListener {
             val goPopup = Intent(this@DetailPromoActivity, PopupActivity::class.java)
             goPopup.putExtra(Helper.PROMOID, intent.getStringExtra(Helper.PROMOID))
+            goPopup.putExtra(Helper.NAME, mAuth.currentUser.displayName)
             goPopup.putExtra(Helper.ID, mAuth.currentUser.uid)
             startActivity(goPopup)
         }

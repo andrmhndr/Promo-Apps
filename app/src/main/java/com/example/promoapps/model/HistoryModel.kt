@@ -7,5 +7,7 @@ data class HistoryModel(
     var title: String? = null,
     var date: Date? = null,
     var description: String? = null,
-
+    var user: String? = null,
+    var userid: String? = null,
+    var adminid: String? = null
 )

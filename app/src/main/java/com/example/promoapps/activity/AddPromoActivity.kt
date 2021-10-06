@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProvider
@@ -40,13 +41,19 @@ class AddPromoActivity : AppCompatActivity() {
         promoId = intent.getStringExtra(Helper.PROMOID).toString()
 
         btnSubmit.setOnClickListener {
-            if (limit){
-                addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), etLimit.text.toString().toInt())
+            if (etTitle.text.isEmpty()){
+                Toast.makeText(this, "Judul tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            } else if(etDescription.text.isEmpty()){
+                Toast.makeText(this, "deskripsi tidak boleh kosong", Toast.LENGTH_SHORT).show()
             }else{
-                addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), null)
+                if (limit){
+                    addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), etLimit.text.toString().toInt())
+                }else{
+                    addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), null)
+                }
+                addPromoViewModel.addPromo(this)
+                finish()
             }
-            addPromoViewModel.addPromo(this)
-            finish()
         }
         
         switchLimit.setOnClickListener {

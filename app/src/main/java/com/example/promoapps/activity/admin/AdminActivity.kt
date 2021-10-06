@@ -34,6 +34,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var txtEmail: TextView
     private lateinit var txtName: TextView
     private lateinit var btnAddPromo: FloatingActionButton
+    private lateinit var btnScan: FloatingActionButton
     private lateinit var rvListPromo: RecyclerView
     private lateinit var swipeRefresh: SwipeRefreshLayout
 
@@ -49,6 +50,7 @@ class AdminActivity : AppCompatActivity() {
         btnAddPromo = findViewById(R.id.btn_add_promo)
         rvListPromo = findViewById(R.id.rv_promo_user)
         swipeRefresh = findViewById(R.id.swipeRefresh)
+        btnScan = findViewById(R.id.btn_scan)
 
         showList()
 
@@ -65,6 +67,11 @@ class AdminActivity : AppCompatActivity() {
         btnAddPromo.setOnClickListener {
             val goAdd = Intent(this@AdminActivity, AddPromoActivity::class.java)
             startActivity(goAdd)
+        }
+
+        btnScan.setOnClickListener{
+            val goScan = Intent(this@AdminActivity, AdminScanActivity::class.java)
+            startActivity(goScan)
         }
 
     }

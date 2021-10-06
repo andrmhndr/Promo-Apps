@@ -7,6 +7,7 @@ class Helper {
         const val USER = "user"
         const val ADMIN = "admin"
         const val ID = "id"
+        const val NAME = "name"
         const val RC_SIGN_IN = 101
 
         const val HISTORY = "history"

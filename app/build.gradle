@@ -57,6 +57,12 @@ dependencies {
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
     implementation 'com.google.zxing:core:3.3.2'
 
+    //qr scanner
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+
+    //dexter access permissions
+    implementation 'com.karumi:dexter:6.2.3'
+
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'

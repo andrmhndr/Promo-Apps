@@ -26,4 +26,7 @@
     <string name="detail">Detail</string>
     <string name="user">User</string>
     <string name="limit">Limit</string>
+    <string name="namaWarung">Kedai Es Gempol Om Ndut</string>
+    <string name="loading">Loading</string>
+    <string name="userid">User ID</string>
 </resources>

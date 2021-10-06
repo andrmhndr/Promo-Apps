@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import com.example.promoapps.R
@@ -15,6 +16,7 @@ class PopupActivity : Activity() {
     private lateinit var imgQR: ImageView
 
     private lateinit var promoid: String
+    private lateinit var user: String
     private lateinit var userid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +28,10 @@ class PopupActivity : Activity() {
         imgQR = findViewById(R.id.img_qr_code)
 
         promoid = intent.getStringExtra(Helper.PROMOID).toString()
+        user = intent.getStringExtra(Helper.NAME).toString()
         userid = intent.getStringExtra(Helper.ID).toString()
 
-        val data = "$promoid*$userid"
+        val data = "$promoid*$user*$userid"
         val qrGEncoder = QRGEncoder(data, null, QRGContents.Type.TEXT, 1000)
         try {
             val qrBitmap = qrGEncoder.bitmap

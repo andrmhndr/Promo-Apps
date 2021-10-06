@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -15,22 +16,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PromoApps">
-        <activity android:name=".activity.user.PopupActivity"
-            android:theme="@style/popup"/>
+        <activity
+            android:name=".activity.admin.AdminScanActivity"
+            android:label="Scan"
+            android:parentActivityName=".activity.admin.AdminActivity" />
+        <activity
+            android:name=".activity.user.PopupActivity"
+            android:theme="@style/popup" />
         <activity
             android:name=".activity.HistoryActivity"
-            android:label="@string/history"/>
-        <activity android:name=".activity.DetailPromoActivity"
-            android:label="@string/detail"/>
+            android:label="@string/history" />
+        <activity
+            android:name=".activity.DetailPromoActivity"
+            android:label="@string/detail" />
         <activity
             android:name=".activity.AddPromoActivity"
             android:parentActivityName=".activity.admin.AdminActivity" />
         <activity
             android:name=".activity.user.UserActivity"
-            android:label="Kedai Es Gempol Om Ndut" />
+            android:label="@string/namaWarung" />
         <activity
             android:name=".activity.admin.AdminActivity"
-            android:label="Kedai Es Gempol Om Ndut" />
+            android:label="@string/namaWarung" />
         <activity
             android:name=".activity.admin.AdminLoginActivity"
             android:parentActivityName=".activity.LoginActivity" />
