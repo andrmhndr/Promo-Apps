@@ -125,7 +125,6 @@ class AdminActivity : AppCompatActivity() {
                 val goHistory = Intent(this@AdminActivity, HistoryActivity::class.java)
                 goHistory.putExtra(Helper.ROLE, Helper.ADMIN)
                 startActivity(goHistory)
-                finish()
                 true
             }
             else -> true

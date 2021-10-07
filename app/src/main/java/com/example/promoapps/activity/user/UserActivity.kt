@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.promoapps.R
 import com.example.promoapps.activity.DetailPromoActivity
+import com.example.promoapps.activity.HistoryActivity
 import com.example.promoapps.activity.LoginActivity
 import com.example.promoapps.adapter.Helper
 import com.example.promoapps.adapter.ListItemPromoAdapter
@@ -88,6 +89,12 @@ class UserActivity : AppCompatActivity() {
                 startActivity(goLogin)
                 finish()
                 mAuth.signOut()
+                true
+            }
+            R.id.btn_history -> {
+                val goHistory = Intent(this@UserActivity, HistoryActivity::class.java)
+                goHistory.putExtra(Helper.ROLE, Helper.USER)
+                startActivity(goHistory)
                 true
             }
             else -> true

@@ -17,16 +17,22 @@ class AdminScanViewModel: ViewModel(){
         db.collection(Helper.PROMOS).document(promoId).get().addOnSuccessListener { document ->
             if (document.exists()){
                 val limit = document.getDouble(Helper.LIMIT)
-                setHistory(
-                    document.getString(Helper.TITLE).toString(),
-                    document.getString(Helper.DESCRIPTION).toString(),
-                    user,
-                    userid,
-                    currentUser.uid,
-                    limit,
-                    promoId
-                )
-                Toast.makeText(context, "Promo ${document.getString(Helper.TITLE)} Berhasil digunakan oleh $user", Toast.LENGTH_SHORT).show()
+                db.collection(Helper.ACCOUNTS).document(userid).get().addOnSuccessListener { userData ->
+                    if (userData.exists()){
+                        setHistory(
+                            document.getString(Helper.TITLE).toString(),
+                            document.getString(Helper.DESCRIPTION).toString(),
+                            user,
+                            userid,
+                            currentUser.uid,
+                            limit,
+                            promoId
+                        )
+                        Toast.makeText(context, "Promo ${document.getString(Helper.TITLE)} Berhasil digunakan oleh $user", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "User tidak ditemukan", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }else{
                 Toast.makeText(context, "Promo tidak tersedia", Toast.LENGTH_SHORT).show()
             }

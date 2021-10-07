@@ -1,5 +1,6 @@
 package com.example.promoapps.activity.admin
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,7 @@ class AdminLoginActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
 
+    private lateinit var progressDialog: ProgressDialog
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
@@ -33,6 +35,9 @@ class AdminLoginActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
         btnLogin = findViewById(R.id.btn_login)
+        progressDialog = ProgressDialog(this@AdminLoginActivity)
+        progressDialog.setTitle("Loading...")
+        progressDialog.setCancelable(false)
 
         btnLogin.setOnClickListener {
             adminLoginViewModel.email = etEmail.text.toString()
@@ -42,7 +47,9 @@ class AdminLoginActivity : AppCompatActivity() {
             }else if(adminLoginViewModel.password.equals("")){
                 Toast.makeText(this, R.string.passwordempty, Toast.LENGTH_SHORT).show()
             }else{
+                progressDialog.show()
                 firebaseAuthEmailandPassword(adminLoginViewModel.email, adminLoginViewModel.password)
+                progressDialog.dismiss()
             }
         }
     }

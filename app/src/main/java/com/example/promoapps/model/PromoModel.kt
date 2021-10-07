@@ -7,5 +7,6 @@ data class PromoModel(
     var title: String? = null,
     var timestamp: Date? = null,
     var description: String? = null,
-    var limit: Int? = null
+    var limit: Int? = null,
+    var image: String? = null
 )

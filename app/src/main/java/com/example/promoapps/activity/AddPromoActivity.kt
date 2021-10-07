@@ -1,18 +1,18 @@
 package com.example.promoapps.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.promoapps.R
 import com.example.promoapps.adapter.Helper
 import com.example.promoapps.viewmodel.AddPromoViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.*
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class AddPromoActivity : AppCompatActivity() {
     private lateinit var addPromoViewModel: AddPromoViewModel
@@ -22,9 +22,9 @@ class AddPromoActivity : AppCompatActivity() {
     private lateinit var btnSubmit: FloatingActionButton
     private lateinit var switchLimit: Switch
     private lateinit var etLimit: EditText
-
-    private lateinit var promoId: String
-    private var limit: Boolean = false
+    private lateinit var img_food: ImageView
+    private lateinit var btn_upload_image: Button
+    private lateinit var btn_delete_image: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,35 +37,67 @@ class AddPromoActivity : AppCompatActivity() {
         etTitle = findViewById(R.id.et_title)
         etDescription = findViewById(R.id.et_description)
         btnSubmit = findViewById(R.id.btn_submit)
-
-        promoId = intent.getStringExtra(Helper.PROMOID).toString()
+        img_food = findViewById(R.id.img_food)
+        btn_upload_image = findViewById(R.id.btn_upload_img)
+        btn_delete_image = findViewById(R.id.btn_delete_image)
 
         btnSubmit.setOnClickListener {
             if (etTitle.text.isEmpty()){
                 Toast.makeText(this, "Judul tidak boleh kosong", Toast.LENGTH_SHORT).show()
             } else if(etDescription.text.isEmpty()){
-                Toast.makeText(this, "deskripsi tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Deskripsi tidak boleh kosong", Toast.LENGTH_SHORT).show()
             }else{
-                if (limit){
-                    addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), etLimit.text.toString().toInt())
+                if (addPromoViewModel.getLimit()){
+                    if (etLimit.text.isEmpty()){
+                        Toast.makeText(this, "Limit tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                    }else {
+                        addPromoViewModel.addPromo(this, etTitle.text.toString(), etDescription.text.toString(), etLimit.text.toString().toInt())
+                    }
                 }else{
-                    addPromoViewModel.setPromo(etTitle.text.toString(), etDescription.text.toString(), null)
+                    addPromoViewModel.addPromo(this, etTitle.text.toString(), etDescription.text.toString(), null)
                 }
-                addPromoViewModel.addPromo(this)
                 finish()
             }
         }
         
         switchLimit.setOnClickListener {
             if (switchLimit.isChecked){
-                limit = true
+                addPromoViewModel.setLimit(true)
                 etLimit.visibility = View.VISIBLE
             }else{
-                limit = false
+                addPromoViewModel.setLimit(false)
                 etLimit.visibility = View.INVISIBLE
             }
         }
 
+        btn_upload_image.setOnClickListener {
+            choosePicture()
+        }
+
+        btn_delete_image.setOnClickListener {
+            deletePicture()
+        }
+
+    }
+
+    private fun deletePicture() {
+        addPromoViewModel.setImageUri(null)
+        img_food.setImageDrawable(getDrawable(R.drawable.img_food))
+    }
+
+    private fun choosePicture() {
+        val intentGetContent: Intent = Intent()
+        intentGetContent.setType("image/*")
+        intentGetContent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(intentGetContent,Helper.RC_GET_CONTENT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Helper.RC_GET_CONTENT && resultCode == RESULT_OK && data != null && data.data != null){
+            addPromoViewModel.setImageUri(data.data!!)
+            img_food.setImageURI(addPromoViewModel.getImageUri())
+        }
     }
 
 }

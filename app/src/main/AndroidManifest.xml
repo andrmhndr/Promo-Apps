@@ -28,7 +28,7 @@
             android:label="@string/history" />
         <activity
             android:name=".activity.DetailPromoActivity"
-            android:label="@string/detail" />
+            android:label="@string/detailPromo" />
         <activity
             android:name=".activity.AddPromoActivity"
             android:parentActivityName=".activity.admin.AdminActivity" />

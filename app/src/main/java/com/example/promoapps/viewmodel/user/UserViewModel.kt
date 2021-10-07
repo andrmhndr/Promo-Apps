@@ -6,6 +6,7 @@ import com.example.promoapps.model.PromoModel
 import com.example.promoapps.model.UserModel
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 
 class UserViewModel: ViewModel() {
@@ -25,7 +26,7 @@ class UserViewModel: ViewModel() {
 
     suspend fun getPromosData(){
         promoList.clear()
-        db.collection(Helper.PROMOS).get().addOnSuccessListener { document->
+        db.collection(Helper.PROMOS).orderBy(Helper.TIMESTAMP, Query.Direction.DESCENDING).get().addOnSuccessListener { document->
             document?.forEach { data->
                 val promoModel = PromoModel(data.id, data.getString("title"), data.getDate("timestamp"), data.getString("description"))
                 promoList.add(promoModel)

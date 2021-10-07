@@ -1,5 +1,6 @@
  package com.example.promoapps.activity
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -32,6 +33,7 @@ import kotlinx.coroutines.*
 
     private lateinit var btnLoginAdmin: Button
     private lateinit var btnLoginUser: Button
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,11 @@ import kotlinx.coroutines.*
                 .requestEmail()
                 .build()
 
+        progressDialog = ProgressDialog(this@LoginActivity)
+        progressDialog.setTitle("Loading...")
+        progressDialog.setMessage("Please Wait...")
+        progressDialog.setCancelable(false)
+
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         btnLoginAdmin = findViewById(R.id.btn_login_admin)
@@ -52,12 +59,14 @@ import kotlinx.coroutines.*
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         btnLoginAdmin.setOnClickListener {
+            progressDialog.show()
             val goAdminLogin = Intent(this@LoginActivity, AdminLoginActivity::class.java)
             startActivity(goAdminLogin)
-            finish()
+            progressDialog.dismiss()
         }
 
         btnLoginUser.setOnClickListener {
+            progressDialog.show()
             signIn()
         }
 
@@ -110,6 +119,7 @@ import kotlinx.coroutines.*
     override fun onStart() {
         super.onStart()
         val currentUser: FirebaseUser? = mAuth.currentUser
+        progressDialog.show()
         if (currentUser != null) {
             GlobalScope.launch(Dispatchers.IO){
                 loginViewModel.check(currentUser)
@@ -117,8 +127,10 @@ import kotlinx.coroutines.*
                     updateUi(loginViewModel.role)
                 }
             }
+        } else{
+            progressDialog.dismiss()
+            updateUi(null)
         }
-
     }
 
     private fun updateUi(role: String?){

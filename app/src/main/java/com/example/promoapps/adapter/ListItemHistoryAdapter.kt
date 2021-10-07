@@ -27,7 +27,7 @@ class ListItemHistoryAdapter(private val listItem: ArrayList<HistoryModel>, priv
 
         holder.txtTitle.text = item.title
         val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-        holder.txtDate.text = dateFormat.format(item.timestamp!!)
+        holder.txtDate.text = dateFormat.format(item.timestamp)
         if (role == Helper.ADMIN){
             holder.txtUser.text = item.user
             holder.txtUserId.text = item.userid
