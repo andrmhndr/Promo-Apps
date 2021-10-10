@@ -5,20 +5,21 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/design_default_color_secondary"
+    android:background="@color/white"
     tools:context=".activity.SplashActivity">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:id="@+id/logo"
-        android:src="@drawable/ic_baseline_money_off_24"/>
+        android:src="@drawable/logo"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/promoapps"
         android:textStyle="bold"
-        android:textSize="50sp"/>
+        android:textSize="50sp"
+        android:textColor="@color/grey"/>
 
 </LinearLayout>

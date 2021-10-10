@@ -10,11 +10,12 @@
     android:background="@drawable/shape_item">
 
     <TextView
+        android:id="@+id/txt_title"
+        android:maxLength="20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title"
-        android:theme="@style/titleStyle"
-        android:id="@+id/txt_title"/>
+        android:theme="@style/titleStyle" />
 
     <TextView
         android:id="@+id/txt_date"
@@ -25,12 +26,13 @@
         android:theme="@style/dateStyle" />
 
     <TextView
-        android:layout_below="@id/txt_date"
+        android:id="@+id/txt_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_description"
-        android:theme="@style/descStyle"
-        android:text="@string/description"/>
+        android:maxLength="30"
+        android:layout_below="@id/txt_date"
+        android:text="@string/description"
+        android:theme="@style/descStyle" />
 
     <Button
         android:layout_width="30dp"

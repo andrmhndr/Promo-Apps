@@ -21,8 +21,10 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="3"
                 android:text="@string/promo"
                 android:theme="@style/nameStyle" />
 
@@ -45,15 +47,6 @@
                     android:layout_gravity="right"
                     android:text="@string/date"
                     android:theme="@style/dateStyle" />
-
-                <TextView
-                    android:id="@+id/txt_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/title"
-                    android:textStyle="bold|italic"
-                    android:theme="@style/titleStyle" />
 
                 <ImageView
                     android:id="@+id/img_food"
