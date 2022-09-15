@@ -1,2 +1,2 @@
 # PromoApps
- promo apps for vincent
+ aplikasi penggunaan promo 
